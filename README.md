@@ -1,5 +1,9 @@
 # EdgeCase-Hunter
-An on-device AI agent that tries to break Android apps by combining unexpected real-device states.
+An on-device AI agent that will try to break Android apps by combining unexpected real-device states.
+
+## Repository status
+
+This repository currently contains the EdgeCase Hunter design and planning baseline for the iQOO Hackathon. Product implementation has not started. Android implementation begins during the official iQOO Hackathon build window, September 26-27, 2026.
 ### Problem
 
 Developers test the expected user journey, but many mobile bugs appear only when real device states collide: rotation, background/foreground transitions, permission changes, interruptions, rapid interaction, connectivity changes, and sensor conditions.
@@ -8,7 +12,7 @@ Existing tools such as Appium, Maestro, Detox and Firebase Robo can automate mob
 
 ### Solution
 
-EdgeCase Hunter runs on the iQOO phone alongside the Android app under test. An on-device AI agent observes the app's UI and current device state, chooses high-risk edge cases to explore, executes them, and records the exact sequence that produces a failure.
+The planned EdgeCase Hunter MVP runs on the iQOO phone alongside the Android app under test. It will observe the app's UI and permitted device state, choose high-value unexplored edge cases, execute only validated actions, and record the exact sequence that produces a failure. A local model is a feasibility-gated option; a deterministic heuristic planner is always required.
 
 Example:
 
@@ -22,19 +26,19 @@ Example:
 
 ### Why the iQOO phone matters
 
-The phone is not just the display. EdgeCase Hunter uses real device conditions including orientation/motion, app lifecycle, permissions, connectivity and other device state. The iQOO hardware provides the actual environment in which mobile bugs occur.
+The phone is not just the display. The MVP will use verified real-device conditions such as orientation, app lifecycle signals, permissions, connectivity, and screen state. Sensor availability and OEM behavior must be confirmed on the actual iQOO device before being claimed or used.
 
 ### AI
 
-A local/open-source model runs on-device to reason about the current state and choose the next high-value edge case. The deterministic test engine performs the actual actions and captures evidence.
+A local/open-source model may reason about the current state and choose the next high-value edge case if the device feasibility spike passes. Otherwise, the deterministic heuristic planner provides the same constrained interface. The deterministic test engine performs the actual actions and captures evidence.
 
 ### Office Kit
 
-The phone is the test/execution environment while the laptop provides the development target and receives the generated reproduction report through the phone–laptop bridge.
+The phone is the test/execution environment while the laptop provides the development target and receives the generated reproduction report through a rehearsed phone-laptop transfer path such as USB/ADB or a local network endpoint.
 
 ### Demo
 
-Give EdgeCase Hunter a deliberately buggy Android app.
+The planned demo gives EdgeCase Hunter a deliberately buggy Android app.
 
 The agent explores it.
 
